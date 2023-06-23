@@ -1,0 +1,19 @@
+sap.ui.define([
+    "sap/ui/core/mvc/Controller"
+],
+    /**
+     * @param {typeof sap.ui.core.mvc.Controller} Controller
+     */
+    function (Controller) {
+        "use strict";
+
+        return Controller.extend("logaligroup.invoices.controller.Main", {
+            onInit: function () {
+
+            },
+            onShowHello : function () {
+                alert("Hellow Word")
+               
+             }
+        });
+    });

@@ -1,0 +1,27 @@
+<mvc:View
+    controllerName="logaligroup.invoices.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <Panel
+                headerText="{i18n>helloPanel}"
+                class="sapUiResponsiveMargin"
+                width="auto"
+            >
+                
+                <Button
+                    text="{i18n>showHellowButton}"
+                    press="onShowHello"
+                    class="sapUiSmallMarginEnd"
+                />
+                          
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>
