@@ -6,8 +6,9 @@ sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
         "logaligroup/invoices/model/models"
-    ],
-    function (UIComponent, Device, models) {
+     
+    ], 
+    function (UIComponent, Device, models,ResourceModel) {
         "use strict";
 
         return UIComponent.extend("logaligroup.invoices.Component", {
@@ -23,12 +24,19 @@ sap.ui.define([
             init: function () {
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
+                this.setModel(models.createRecipient());
 
+              
+                
+                
+                
+                
                 // enable routing
                 this.getRouter().initialize();
 
                 // set the device model
-                this.setModel(models.createDeviceModel(), "device");
+            //    this.setModel(models.createDeviceModel(), "device");
+
             }
         });
     }

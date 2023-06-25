@@ -1,31 +1,24 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/ui/model/json/JSONModel"
+    "sap/m/MessageToast"
+
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,MessageToast,JSONModel) {
+    function (Controller,MessageToast) {
         "use strict";
 
         return Controller.extend("logaligroup.invoices.controller.Main", {
             onInit: function () {
-             let   oData ={
-                    recipient:{
-                        name:"World"
-              
-                    }
-                   
-                };
-
-                const oModel = new JSONModel(oData)
-                this.getView().setModel(oModel)
-
+                        
             },
             onShowHello : function () {
-                MessageToast.show("Hellow Word")
-               
+                var oBundle=this.getView().getModel("i18n").getResourceBundle();
+                 var sRecipient=this.getView().getModel().getProperty("/recipient/name")
+                 var Msg = oBundle.getText("helloMsg",[sRecipient])
+                 MessageToast.show(Msg)
+                            
              }
         });
     });
