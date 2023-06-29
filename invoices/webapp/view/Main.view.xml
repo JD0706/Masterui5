@@ -9,6 +9,7 @@
         
              <content>
                    <mvc:XMLView viewName="logaligroup.invoices.view.HelloPanel"></mvc:XMLView>
+                    <mvc:XMLView viewName="logaligroup.invoices.view.InvoicesList"></mvc:XMLView>
                 
              </content>
            

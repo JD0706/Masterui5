@@ -69,10 +69,14 @@
           "bundleName": "logaligroup.invoices.i18n.i18n"
         }
       },
-      "": {
+      "northwind": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
+      },
+      "invoices" :{ 
+        "type": "sap.ui.model.json.JSONModel",
+         "uri" :"Invoices.json"
       }
     },
     "resources": {
