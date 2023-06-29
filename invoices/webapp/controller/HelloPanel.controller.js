@@ -1,11 +1,11 @@
 sap.ui.define([
     'sap/ui/core/mvc/Controller',
-    'sap/m/MessageToast',
-    'sap/ui/core/Fragment'
+    'sap/m/MessageToast'
+    
            
 ], 
 
-function(Controller, MessageToast,Fragment ) {
+function(Controller, MessageToast ) {
 
     'use strict';
 
@@ -24,7 +24,10 @@ function(Controller, MessageToast,Fragment ) {
            
          },
          onOpenDialog: function(){
-            const oView = this.getView();
+
+          this.getOwnerComponent().onOpenDialog();
+
+   /**          const oView = this.getView();
             if (!oView.byId("helloDialog")){
                 Fragment.load({
                     id: oView.getId(),
@@ -36,13 +39,14 @@ function(Controller, MessageToast,Fragment ) {
                 });
             }else {
               this.byId("helloDialog").open();
-            }
+            } */
            
          },
-     onCloseDialog : function(){
+  /**    onCloseDialog : function(){
         this.byId("helloDialog").close();
 
-     }
+     }*/
+
     });
 
     

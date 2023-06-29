@@ -12,8 +12,10 @@ sap.ui.define([
         return Controller.extend("logaligroup.invoices.controller.Main", {
             
             onInit: function () {
-                        
+                       
             },
-            
+            onOpenDialogHeader : function(){
+                this.getOwnerComponent().onOpenDialog(); 
+            }
         });
     });
