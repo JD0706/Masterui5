@@ -14,8 +14,11 @@
                                                               showMeasure:false
                                                             }
                                                    }"
-                                                 numberUnit="{currency>/usd}"                                
-                                           />
+                                numberUnit="{currency>/usd}" 
+                                numberState="{= ${invoices>ExtendedPrice} > 50 ? 'Success' : 'Error'}"
+                                 type = "Navigation"
+                                 press = "navigateToDetails"/>                               
+                                           
 
 
                                                                                            
