@@ -1,0 +1,81 @@
+_schema-version: "3.2"
+ID: Lists
+version: 0.0.1
+modules:
+- name: lists-approuter
+  type: approuter.nodejs
+  path: lists-approuter
+  requires:
+  - name: Lists_html_repo_runtime
+  - name: uaa_Lists
+  - name: Lists-destination-service
+    group: destinations
+    properties:
+      forwardAuthToken: false
+      name: ui5
+      url: https://ui5.sap.com
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: Lists_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Lists_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - logaligroupapplists.zip
+      name: logaligroupapplists
+      target-path: resources/
+- name: logaligroupapplists
+  type: html5
+  path: applists
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: Lists_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: uaa_Lists
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: Lists-xsuaa-service
+    service-plan: application
+- name: Lists_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: Lists-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: Lists-destination-service
+    service-plan: lite
+parameters:
+  deploy_mode: html5-repo

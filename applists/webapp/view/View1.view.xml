@@ -1,0 +1,27 @@
+<mvc:View controllerName="logaligroup.applists.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content >
+        <IconTabBar >
+        <items>
+        <IconTabFilter text="{i18n>standardList}">
+
+        </IconTabFilter>
+
+         <IconTabFilter text="{i18n>inputList}" >
+        </IconTabFilter>
+
+         <IconTabFilter text="{i18n>notificationList}">
+        </IconTabFilter>
+
+         <IconTabFilter text="{i18n>customList}">
+        </IconTabFilter>
+        
+        </items>
+        </IconTabBar>
+
+
+        </content >
+    </Page>
+</mvc:View>
