@@ -14,7 +14,9 @@
             <IconTabBar>
                 <items>
                     <IconTabFilter text="{i18n>objecList}">
-                        <List items="{/Products}">
+                        <List items="{path:'/Products',filters:[
+                         {path:'Brand',operator:'EQ',value1:'Compaq'}
+                        ]}">
                             <items>
                                 <ObjectListItem
                                     title="{Material}   {Brand} {Model}"
@@ -30,7 +32,9 @@
                     </IconTabFilter>
 
                     <IconTabFilter text="{i18n>standardList}">
-                        <List items="{/Products}">
+                        <List items="{path:'/Products',sorter:{
+                           path:'Brand',descending:false,group:true 
+                        }}">
                             <items>
                                 <StandardListItem
                                     title="{Material}   {Brand} {Model}"
