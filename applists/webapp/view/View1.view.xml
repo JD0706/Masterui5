@@ -41,7 +41,8 @@
                           <core:Item key="SingleSelectMaster" text="{i18n>SingleSelectMaster}"></core:Item>
                        </items>
                      </Select>
-                        <List items="{path:'/Products',sorter:{
+                      <Button text="{i18n>showSelectionItems}" press ="onSelectedRows" class="sapUiSmallMarginBegin"></Button>
+                        <List id ="standardList" items="{path:'/Products',sorter:{
                            path:'Brand',descending:false,group:true 
                         },groupHeaderFactory:'.getGroupHeader'}" mode="{/typeSelection}">
                             <items>
