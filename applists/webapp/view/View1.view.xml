@@ -42,6 +42,7 @@
                        </items>
                      </Select>
                       <Button text="{i18n>showSelectionItems}" press ="onSelectedRows" class="sapUiSmallMarginBegin"></Button>
+                      <Button text="{i18n>deleteSelectionItems}" press ="onDeleteSelectedRows" class="sapUiSmallMarginBegin"></Button>
                         <List id ="standardList" items="{path:'/Products',sorter:{
                            path:'Brand',descending:false,group:true 
                         },groupHeaderFactory:'.getGroupHeader'}" mode="{/typeSelection}">

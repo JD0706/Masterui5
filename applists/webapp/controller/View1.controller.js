@@ -35,6 +35,37 @@ sap.ui.define([
               }
             }
 
+            function  onDeleteSelectedRows(oEvent){
+
+                var standartListItem = this.getView().byId("standardList")
+                var selectedItems = standartListItem.getSelectedItems();
+
+                var i18nModel= this.getView().getModel("i18n").getResourceBundle();
+                if(selectedItems.length === 0){
+                    sap.m.MessageToast.show(i18nModel.getText("noSelection"))
+                 } else{
+                    var textMessage = i18nModel.getText("selection")
+                    var model =this.getView().getModel();
+                    var products = model.getProperty("/Products")
+
+                    var arrayId =[];
+                    for(var i in selectedItems){
+                        var context =    selectedItems[i].getBindingContext();
+                        var oContext = context.getObject();
+                        arrayId.push(oContext.Id) ;
+                        textMessage=textMessage + "-" + oContext.Material;
+                    }
+
+                    products = products.filter(function(p){
+                        return !arrayId.includes(p.Id)
+                    })
+                   model.setProperty("/Products",products);
+                   standartListItem.removeSelection();
+                   sap.m.MessageToast.show(textMessage);
+              }
+            }
+
+
         return Controller.extend("logaligroup.applists.controller.View1", {
             onInit: function () {
                 var oJsonModel = new sap.ui.model.json.JSONModel();
@@ -43,6 +74,7 @@ sap.ui.define([
 
             },
             getGroupHeader:getGroupHeader,
-            onSelectedRows:onSelectedRows
+            onSelectedRows:onSelectedRows,
+            onDeleteSelectedRows:onDeleteSelectedRows
         });
     });
