@@ -32,9 +32,18 @@
                     </IconTabFilter>
 
                     <IconTabFilter text="{i18n>standardList}">
+                     <Select selectedKey="{/typeSelection}">
+                        <items>
+                          <core:Item key="None" text="{i18n>None}"></core:Item>
+                          <core:Item key="MultiSelect" text="{i18n>MultiSelec}"></core:Item>
+                          <core:Item key="SingleSelect" text="{i18n>SingleSelect}"></core:Item>
+                          <core:Item key="SingleSelectLeft" text="{i18n>SingleSelecLef}"></core:Item>
+                          <core:Item key="SingleSelectMaster" text="{i18n>SingleSelectMaster}"></core:Item>
+                       </items>
+                     </Select>
                         <List items="{path:'/Products',sorter:{
                            path:'Brand',descending:false,group:true 
-                        }}">
+                        },groupHeaderFactory:'.getGroupHeader'}" mode="{/typeSelection}">
                             <items>
                                 <StandardListItem
                                     title="{Material}   {Brand} {Model}"
