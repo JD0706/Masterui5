@@ -7,7 +7,7 @@
             <Label id="labelEmployee" text="{i18n>labelEmployee}" class="sapUiTinyMargin" ></Label>
             <Input  id="inputEmployee"  value="{/employeeId}"  maxLength="6"   width="200px"   class="sapUiSmallMarginEnd"  liveChange="onValidate"></Input>
             <Label id="labelCountry"  text="{i18n>labelCountry}" class="sapUiTinyMargin" visible="false"></Label>
-            <Select id="slCountry" selectedKey="{/countryKey}" items= "{/listCountry}" forceSelection="false" visible="false">
+            <Select id="slCountry" selectedKey="{/countrykey}" items= "{/listCountry}" forceSelection="false" visible="false">
             <items>
               <core:Item  key="{key}" text="{text}"/>
               
