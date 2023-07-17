@@ -32,7 +32,7 @@ sap.ui.define([
             onAfterRendering: function () {
             var oJSONModel = new sap.ui.model.json.JSONModel();
             var oView = this.getView();
-            var i18nBundle = oView.git statusgetModel("i18n").getResourceBundle();
+            var i18nBundle = oView.getModel("i18n").getResourceBundle();
             var oJSON = {
                 employeeId : "123456",
                 countryKey: "UK",
