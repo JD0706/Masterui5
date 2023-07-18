@@ -27,6 +27,33 @@ sap.ui.define([
 
           }
 
+          function onFilter(){
+            var oJson = this.getView().getModel().getData();
+            var filters = [];
+            if(oJson.employeeId !== ""){
+              filters.push(new sap.ui.model.Filter("EmployeeID", "EQ" ,oJson.employeeId))
+          }
+            if(oJson.countryKey !== ""){
+              filters.push(new sap.ui.model.Filter("Country", "EQ" ,oJson.countryKey))
+          }
+          var oTable =this.getView().byId("tableEmployee");
+          var oBinding = oTable.getBinding("items")
+          oBinding.filter(filters);
+         }
+         function  onClearFilter() {
+          var oModel = this.getView().getModel();
+          oModel.setProperty("/employeeId","")
+          oModel.setProperty("/countryKey","")
+         } 
+         
+         function  showPostalCode(oEvent){
+           var itemPressed = oEvent.getSource();
+           var context = itemPressed.getBindingContext();
+           var object  =  context.getObject() ;
+           sap.m.MessageToast.show(object.PostalCode);
+
+            }
+
         return Controller.extend("logaligroup.employees.controller.Main", {
 
             onAfterRendering: function () {
@@ -57,6 +84,9 @@ sap.ui.define([
                 oView.setModel(oJSONModel);
 
             },
-            onValidate:onValidate
+            onValidate:onValidate,
+            onFilter:onFilter,
+            onClearFilter ,
+            showPostalCode
         });
     });

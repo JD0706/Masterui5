@@ -7,12 +7,14 @@
           <HBox >
             <Label id="labelEmployee" text="{i18n>labelEmployee}" class="sapUiTinyMargin" ></Label>
             <Input  id="inputEmployee"  value="{/employeeId}"  maxLength="6"   width="200px"   class="sapUiSmallMarginEnd" ></Input><!-- liveChange="onValidate"-->
-            <Label id="labelCountry"  text="{i18n>labelCountry}" class="sapUiTinyMargin" visible="false"></Label>
+            <Label id="labelCountry"  text="{i18n>labelCountry}" class="sapUiTinyMargin" ></Label>
             <Select id="slCountry" selectedKey="{/countryKey}" items= "{/listCountry}" forceSelection="false" >
                <items>
                  <core:Item  key="{key}" text="{text}"/>
                </items>
              </Select>
+            <Button id="btnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class = "sapUiSmallMarginMarginEnd"></Button>
+            <Button id="btnClearFilter" text="{i18n>btnClearFilter}" icon="sap-icon://clear-filter" press="onClearFilter" class = "sapUiSmallMarginEnd"></Button>
             </HBox>
              <Panel >
                 <Table id="tableEmployee" items="{/employees}" >
@@ -44,7 +46,7 @@
          </Column>
           </columns>
          <items>
-          <ColumnListItem  ><!--type="Active" press="showOrders"-->
+          <ColumnListItem  type="Active" press="showPostalCode"  ><!--type="Active" press="showOrders"-->
           <cells>
             <Label text="{EmployeeID}" ></Label>
             <Label text="{LastName}" ></Label>
