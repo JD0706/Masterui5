@@ -54,6 +54,8 @@ sap.ui.define([
 
             }
 
+
+
             function onshowCity(oEvent){
                 var oJsonModelConfig=this.getView().getModel("jsonModelConfig")
                 oJsonModelConfig.setProperty("/visibleCity",true);
@@ -67,7 +69,53 @@ sap.ui.define([
               oJsonModelConfig.setProperty("/visibleBtnShowCity",true);
               oJsonModelConfig.setProperty("/visibleBtnHideCity",false);
            }
+           
+           function showOrders(oEvent){
+            var ordersTable = this.getView().byId("ordersTable")
+             ordersTable.destroyItems();
 
+             var itemPressed = oEvent.getSource();
+             var oContext = itemPressed.getBindingContext("jsonEmployees");
+             var object = oContext.getObject();
+             var orders = object.Orders;
+
+             var orderItems= [];
+
+             for (var i in orders){
+              orderItems.push( new sap.m.ColumnListItem({
+                 cells : [
+                   new sap.m.Label({text :orders[i].OrderID}),
+                   new sap.m.Label({text :orders[i].Freight}),
+                   new sap.m.Label({text :orders[i].ShipAddress}),
+                 ]
+              }))
+             }
+               /**  */
+             var newTable = new sap.m.Table({
+              width:"auto",
+              columns :[
+                   new sap.m.Column({
+                    header : new sap.m.Label({ 
+                      text:"{i18n>orderID}"
+                    })
+                  }),
+                  new sap.m.Column({
+                    header : new sap.m.Label({ 
+                      text:"{i18n>freight}"
+                    })
+                  }),
+                  new sap.m.Column({
+                    header : new sap.m.Label({ 
+                      text:"{i18n>shipAddress}"
+                    })
+                  })
+                    
+              ],
+              items : orderItems
+              } ).addStyleClass("sap.UiSmallMargin")
+             ordersTable.addItem(newTable);
+
+            }
 
         return Controller.extend("logaligroup.employees.controller.Main", {
 
@@ -102,7 +150,8 @@ sap.ui.define([
             onFilter:onFilter,
             onClearFilter ,
             showPostalCode,
-            onshowCity,
-            onHideCity:onHideCity
+            onshowCity:onshowCity,
+            onHideCity:onHideCity,
+            showOrders:showOrders
         });
     });
