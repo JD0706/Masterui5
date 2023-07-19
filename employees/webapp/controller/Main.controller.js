@@ -112,9 +112,59 @@ sap.ui.define([
                     
               ],
               items : orderItems
-              } ).addStyleClass("sap.UiSmallMargin")
+              } ).addStyleClass("sap.UiSmallMarginEnd")
              ordersTable.addItem(newTable);
 
+          //  tabla dinamica hecha con JS
+          var newTableJSON =new sap.m.Table();
+             newTableJSON .setWidth("auto");
+             newTableJSON .addStyleClass("sapUiSmallMarginend"); 
+
+             var columnOrderID =new sap.m.Column();
+             var labelOrderID =new sap.m.Label(); 
+             labelOrderID.bindProperty("text","i18n>orderID");
+             columnOrderID.setHeader(labelOrderID);
+             newTableJSON.addColumn(columnOrderID)
+
+             var columnFreight =new sap.m.Column();
+             var labelFreight =new sap.m.Label(); 
+             labelFreight.bindProperty("text","i18n>freight");
+             columnFreight.setHeader(labelFreight);
+             newTableJSON.addColumn(columnFreight)
+
+             var columnShipAddress =new sap.m.Column();
+             var labelShipAddress =new sap.m.Label(); 
+             labelShipAddress.bindProperty("text","i18n>shipAddress");
+             columnShipAddress.setHeader(labelShipAddress);
+             newTableJSON.addColumn(columnShipAddress);
+
+             
+
+             var columnListItem = new sap.m.ColumnListItem();
+             
+             var cellOrderID = new sap.m.Label();
+             cellOrderID.bindProperty("text","jsonEmployees>OrderID");
+             columnListItem.addCell(cellOrderID)
+
+             var cellFreight = new sap.m.Label();
+             cellFreight.bindProperty("text","jsonEmployees>Freight");
+             columnListItem.addCell(cellFreight);
+
+             var cellShipAddress = new sap.m.Label();
+             cellShipAddress.bindProperty("text","jsonEmployees>ShipAddress");
+             columnListItem.addCell(cellShipAddress);
+
+             var oBindingInfo = {
+              model: "jsonEmployees",
+              path: "Orders",
+              template: columnListItem
+             };
+
+              newTableJSON.bindAggregation( "items", oBindingInfo);
+              newTableJSON.bindElement( "jsonEmployees>" + oContext.getPath());
+              ordersTable.addItem(newTableJSON);
+
+        
             }
 
         return Controller.extend("logaligroup.employees.controller.Main", {
