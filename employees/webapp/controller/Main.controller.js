@@ -44,6 +44,7 @@ sap.ui.define([
           var oModel = this.getView().getModel("jsonCountries");
           oModel.setProperty("/employeeId","")
           oModel.setProperty("/countryKey","")
+         
          } 
          
          function  showPostalCode(oEvent){
@@ -157,7 +158,7 @@ sap.ui.define([
              var oBindingInfo = {
               model: "jsonEmployees",
               path: "Orders",
-              template: columnListItem
+              template:columnListItem
              };
 
               newTableJSON.bindAggregation( "items", oBindingInfo);
@@ -165,6 +166,26 @@ sap.ui.define([
               ordersTable.addItem(newTableJSON);
 
         
+            }
+
+            function showOrdersDialog(oEvent){
+              var iconPressed = oEvent.getSource();
+              var oContext = iconPressed.getBindingContext("jsonEmployees");
+
+            if(!this.oDialogOrders){
+              this.oDialogOrders = sap.ui.xmlfragment("logaligroup.employees.fragment.DialogOrders", this);
+              this.getView().addDependent(this.oDialogOrders);
+            }
+            this.oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath()) ;
+            this.oDialogOrders.open(); 
+
+            }
+
+            function onCloseOrders(oEvent){
+
+              this.oDialogOrders.close(); 
+  
+  
             }
 
         return Controller.extend("logaligroup.employees.controller.Main", {
@@ -202,6 +223,8 @@ sap.ui.define([
             showPostalCode,
             onshowCity:onshowCity,
             onHideCity:onHideCity,
-            showOrders:showOrders
+            showOrders:showOrders,
+            showOrdersDialog,
+            onCloseOrders
         });
     });
