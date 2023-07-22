@@ -1,7 +1,24 @@
 <mvc:View controllerName="logaligroup.employees.controller.App"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
     xmlns="sap.m">
     <App id="app">
+    <pages>
+       <Page>
+        <f:FlexibleColumnLayout id="fcl" backgroundDesign="Solid" layout="TwoColumnsMidExpanded">
+          <f:beginColumnPages>
+            <mvc:XMLView id="masterEnployeeView" viewName="logaligroup.employees.view.Main" ></mvc:XMLView>
+          </f:beginColumnPages>
+           <f:midColumnPages>
+             <mvc:XMLView id="detailEnployeeView" viewName="logaligroup.employees.view.EmployeeDetails" ></mvc:XMLView>
+          </f:midColumnPages>
+          <f:endColumnPages>
+             <Page ></Page> 
+          </f:endColumnPages>
+         
+        </f:FlexibleColumnLayout>
+      </Page>
+    </pages>
     </App>
 </mvc:View>
