@@ -1,23 +1,27 @@
 sap.ui.define(
-  [
+  [   
       "sap/ui/core/mvc/Controller"
   ],
   function(BaseController) {
     "use strict";
 
-    function showEmployeeDetails(category,nameEvent,path){
-     var detailView = this.getView().byId("detailEmployeeView")
-     detailView.bindElement("jsonEmployees>" + path);
-     this.getView().getModel("jsonModelLayout").setProperty("/ActiveKey","TwoColumnsBeginExpanded")   
+    function showEmployeeDetails(category,nameEvent, path){
+          var detailView = this.getView().byId("detailEmployeeView")
+          detailView.bindElement("jsonEmployees>" + path);
+          this.getView().getModel("jsonModelLayout").setProperty("/ActiveKey","TwoColumnsBeginExpanded")   
+     
+        var incidenceModel =new sap.ui.model.json.JSONModel([]);
+           detailView.setModel(incidenceModel,"incidenceModel");
+           detailView.byId("tableIncidence").removeAllContent();
 
     }
     
 
     return BaseController.extend("logaligroup.employees.controller.App", {
+
       onAfterRendering: function () {
         var oView = this.getView();
-      
-       var i18nBundle = oView.getModel("i18n").getResourceBundle();
+        var i18nBundle = oView.getModel("i18n").getResourceBundle();
      
 
      

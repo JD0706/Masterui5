@@ -188,12 +188,13 @@ sap.ui.define([
         }
 
         function showEmployee(oEvent){
+        
           var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
-          this._bus.publish("flexible","showEmployees",path)
+          this._bus.publish("flexible","showEmployees",path);
         }
         
 
-          return Controller.extend("logaligroup.employees.controller.MasterEmployee", {
+          return Controller.extend("logaligroup.employees.controller.Main", {
         
           onInit : function(){
             this._bus = sap.ui.getCore().getEventBus();
