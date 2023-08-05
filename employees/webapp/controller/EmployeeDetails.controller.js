@@ -30,11 +30,36 @@ sap.ui.define([
 
     }
 
+    function onDeleteIncidence(oEvent){
+     var tableIncidence=this.byId("tableIncidence")
+     var rowIncidence =oEvent.getSource().getParent().getParent(); 
+     var incidenceModel =this.getView().getModel("incidenceModel") 
+    
+     //Eliminar Datos
+      var odata =incidenceModel.getData();
+      var contexObj = rowIndice.getBindingContext("incidenceModel").getObject();
+      odata.splice(contextObj.index-1,1);
+       for( var i in odata){
+          odata[i].index = parseInt(i)+1;
+
+       }
+       incidenceModel.refresh();
+
+     //Eliminar Objeto Visual
+
+     tableIncidence.removeContent(rowIndice);
+     for( var j in tableIncidence.getContent()){
+        tableIncidence.getContent()[j].bindElement("incidenceModel>/" + j) ;      
+     }   
+
+    }
+
     return Controller.extend("logaligroup.employees.controller.EmployeeDetails",{
       
         onInit: onInit,
         
         onCreateIncidence : onCreateIncidence,
+        onDeleteIncidence : onDeleteIncidence,
         Formatter  : formatter
     })
     
